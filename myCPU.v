@@ -131,7 +131,9 @@ module myCPU (
         .rD1(rD1),
         .rD2(rD2),
         .ext(sext_ext),
-        .rf_wD(wD)
+        .rf_wD(wD),
+
+        .wR(WB_wR)
         );
 
     wire [1:0]          npc_op;

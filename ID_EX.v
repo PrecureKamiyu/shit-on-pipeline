@@ -3,6 +3,7 @@ module ID_EX(
     input wire        clk,
     input wire        rst,
 
+    input wire [4:0]  ID_wR,
     input wire [1:0]  ID_npc_op,
     input wire [1:0]  ID_rf_wsel,
     input wire        ID_rf_we,
@@ -17,6 +18,7 @@ module ID_EX(
     input wire [31:0] ID_ext,
     input wire [31:0] ID_pc4,
 
+    output reg [4:0]  EX_wR,
     output reg [1:0]  EX_npc_op,
     output reg [1:0]  EX_rf_wsel,
     output reg        EX_rf_we,
@@ -78,5 +80,9 @@ module ID_EX(
     always @(posedge clk or posedge rst) begin
         if (rst) EX_pc4 <= 0;
         else EX_pc4 <= ID_pc4;
+    end
+    always @(posedge clk or posedge rst) begin
+        if (rst) EX_wR <= 0;
+        else EX_wR <= ID_wR;
     end
 endmodule
