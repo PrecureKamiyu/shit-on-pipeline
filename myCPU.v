@@ -119,7 +119,7 @@ module myCPU (
 
     CONTROL_HAZARD_DETECTION CHD(
         .EX_npc_op(EX_npc_op),
-        .alu_f(f),
+        .f(f),
         .control_hazard(control_hazard)
         );
 
