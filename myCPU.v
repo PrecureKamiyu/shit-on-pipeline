@@ -146,7 +146,7 @@ module myCPU (
     wire                dram_we;
 
     CONTROLLER myCON(
-        .inst(inst),
+        .inst(ID_inst),
         .npc_op(npc_op),
         .rf_wsel(rf_wsel),
         .rf_we(rf_we),
