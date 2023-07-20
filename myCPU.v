@@ -27,13 +27,6 @@ module myCPU (
 
 `ifdef RUN_TRACE
     // Debug Interface
-    // dont know what is for
-    // assign debug_wb_have_inst = 1'b1;
-    // assign debug_wb_pc        = (debug_wb_have_inst) ? pc : 32'b0;
-    // assign debug_wb_ena       = (debug_wb_have_inst && rf_we) ? 1'b1 : 1'b0;
-    // assign debug_wb_reg       = (debug_wb_ena) ? inst[11:7] : 5'b0;
-    // assign debug_wb_value     = (debug_wb_ena) ? wD : 32'b0;
-
     assign debug_wb_have_inst = (WB_pc4 == 32'b0) ? 0 : 1; //if pc4 == 0,it must be nop
     assign debug_wb_pc        = (debug_wb_have_inst) ? (WB_pc4 - 4) : 32'b0;
     assign debug_wb_ena       = (debug_wb_have_inst && WB_rf_we) ? 1'b1 : 1'b0;
@@ -169,6 +162,7 @@ module myCPU (
         .rst(cpu_rst),
         .ID_npc_op(npc_op),
         .ID_rf_wsel(rf_wsel),
+        .ID_rf_we(rf_we),
         .ID_sext_op(sext_op),
         .ID_alu_op(alu_op),
         .ID_b_sel(b_sel),
