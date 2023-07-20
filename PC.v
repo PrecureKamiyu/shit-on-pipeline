@@ -16,6 +16,7 @@ module PC (
     `else
             curr_adr <= 0;
     `endif
+        end
         else if (control_hazard)
             pc <= npc;
         else if (data_hazard)
@@ -23,5 +24,6 @@ module PC (
         else
             curr_adr <= npc;
     end
+
     assign pc = curr_adr;
 endmodule
