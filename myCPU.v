@@ -121,7 +121,7 @@ module myCPU (
         .clk(cpu_clk),
         .din(ID_inst),
         .WB_ext(WB_ext),
-        .npc_pc4(WB_npc_pc4),
+        .npc_pc4(WB_pc4),
         .dram_rdo(WB_rdo),
         .alu_c(WB_alu_c),
         .rf_wsel(WB_rf_wsel),
