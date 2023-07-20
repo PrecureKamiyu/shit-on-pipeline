@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`time/ 1ps
 
 `include "defines.vh"
 
@@ -53,7 +53,6 @@ module myCPU (
     wire [31:0]         EX_rD2;
     wire [31:0]         EX_ext;
     wire [31:0]         EX_pc4;
-    wire [31:0]         EX_alu_c;
     wire [4:0]          EX_wR;
     wire [1:0]          MEM_npc_op;
     wire [1:0]          MEM_rf_wsel;
@@ -212,7 +211,7 @@ module myCPU (
         .EX_rD2(rD2),
         .EX_ext(EX_ext),
         .EX_pc4(EX_pc4),
-        .EX_alu_c(EX_alu_c),
+        .EX_alu_c(alu_c),
         .EX_wR(EX_wR),
         .MEM_npc_op(MEM_npc_op),
         .MEM_rf_wsel(MEM_rf_wsel),
