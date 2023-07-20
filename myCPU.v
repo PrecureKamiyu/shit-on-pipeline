@@ -204,6 +204,7 @@ module myCPU (
         .clk(cpu_clk),
         .rst(cpu_rst),
         .EX_npc_op(EX_npc_op),
+        .EX_rf_we(EX_rf_we),
         .EX_rf_wsel(EX_rf_wsel),
         .EX_dram_we(dram_we),
         .EX_rD1(rD1),
