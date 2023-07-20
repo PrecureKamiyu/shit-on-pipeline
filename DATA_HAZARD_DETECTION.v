@@ -34,6 +34,7 @@ module DATA_HAZARD_DETECTION (
     output reg [31:0] new_rD2,
     output wire       data_hazard
     );
+
     //A,ID and EX
     wire              rR1_a = (ID_rR1 == EX_wR) & EX_rf_we &  ID_rf_re[0] & (ID_rR1 != 5'b0);
     wire              rR2_a = (ID_rR2 == EX_wR) & EX_rf_we &  ID_rf_re[1] & (ID_rR2 != 5'b0);

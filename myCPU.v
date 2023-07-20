@@ -263,7 +263,7 @@ module myCPU (
         .EX_npc_op(EX_npc_op),
         .EX_rf_we(EX_rf_we),
         .EX_rf_wsel(EX_rf_wsel),
-        .EX_dram_we(dram_we),
+        .EX_dram_we(EX_dram_we),
         .EX_rD2(EX_rD2),
         .EX_ext(EX_ext),
         .EX_pc4(EX_pc4),
@@ -282,8 +282,8 @@ module myCPU (
 
     // DRAM part here
     assign Bus_addr = MEM_alu_c;
-    assign rd = Bus_rdata;
-    assign Bus_wen = MEM_dram_we;
+    assign rd       = Bus_rdata;
+    assign Bus_wen  = MEM_dram_we;
     assign Bus_wdata = MEM_rD2;
 
     MEM_WB myMEM_WB (

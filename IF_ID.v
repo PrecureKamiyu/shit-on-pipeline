@@ -21,7 +21,7 @@ module IF_ID(
     always @(posedge clk or posedge rst) begin
         if (rst) ID_pc4 <= 0;
         else if (control_hazard) ID_pc4 <= 0;
-        else if(data_hazard) ID_pc4 <= ID_pc4;
+        else if (data_hazard) ID_pc4 <= ID_pc4;
         else ID_pc4 <= IF_pc4;
     end
 endmodule
