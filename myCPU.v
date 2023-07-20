@@ -102,7 +102,7 @@ module myCPU (
         .MEM_pc4(MEM_pc4),
         .MEM_ext(MEM_ext),
         .MEM_alu_c(MEM_alu_c),
-        .MEM_rd(rd),
+        .MEM_rdo(rd),
 
         .WB_wR(WB_wR),
         .WB_rf_we(WB_rf_we),
@@ -110,7 +110,7 @@ module myCPU (
         .WB_pc4(WB_pc4),
         .WB_ext(WB_ext),
         .WB_alu_c(WB_alu_c),
-        .WB_rd(WB_rdo),
+        .WB_rdo(WB_rdo),
 
         .new_rD1(new_rD1),
         .new_rD2(new_rD2),

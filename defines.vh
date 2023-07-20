@@ -26,9 +26,9 @@
 `define TRUE 1'b1
 `define FALSE 1'b0
 
-`define RF_WSEL_ALU 'b00
 `define RF_WSEL_PC4 'b01
 `define RF_WSEL_EXT 'b10
+`define RF_WSEL_ALU 'b00
 `define RF_WSEL_RDO 'b11
 
 `define B_SEL_RD2 'b0
