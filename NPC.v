@@ -9,21 +9,20 @@ module NPC (
     output reg [31:0] npc
 );
 
-    // pc4 is very simple here
     always @(*) begin
         pc4 = pc + 32'd4;
     end
-    // npc
     // TODO
+    // Note here
     always @(*) begin
         if (npc_op == `NPC_PC4) begin
             npc = pc + 32'd4;
         end else if (npc_op == `NPC_JAL) begin
-            npc = pc + offset;
+            npc = pc + offset - 8;
         end else if (npc_op == `NPC_JALR) begin
             npc = imm;
         end else if (npc_op == `NPC_JMP) begin
-            npc = br ? pc + offset : pc + 32'd4;
+            npc = br ? pc + offset - 8 : pc + 32'd4;
         end else begin
             npc = pc + 32'd4;
         end
