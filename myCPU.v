@@ -221,6 +221,7 @@ module myCPU (
         .ID_sext_op(sext_op),
         .ID_alu_op(alu_op),
         .ID_b_sel(b_sel),
+        .ID_br_op(br_op),
         .ID_dram_we(dram_we),
         .ID_rD1(new_rD1),
         .ID_rD2(new_rD2),
@@ -246,12 +247,12 @@ module myCPU (
     wire                f;
 
     EX myEX (
+        .A(EX_rD1),
+        .rf_rD2(EX_rD2),
+        .sext_ext(EX_ext),
         .b_sel(EX_b_sel),
         .alu_op(EX_alu_op),
         .br_op(EX_br_op),
-        .A(EX_rD1),
-        .sext_ext(EX_ext),
-        .rf_rD2(EX_rD2),
         .C(alu_c),
         .f(f)
         );
