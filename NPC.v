@@ -13,8 +13,8 @@ module NPC (
     always @(*) begin
         pc4 = pc + 32'd4;
     end
-    
     // npc
+    // TODO
     always @(*) begin
         if (npc_op == `NPC_PC4) begin
             npc = pc + 32'd4;
