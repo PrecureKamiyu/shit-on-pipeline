@@ -20,6 +20,7 @@ module ID(
     output wire [31:0] ext,
     // rf_wD is only for debug
     output wire [31:0] rf_wD,
+    input wire [4:0]   wR
     );
 
 
