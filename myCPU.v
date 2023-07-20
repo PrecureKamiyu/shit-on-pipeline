@@ -172,6 +172,7 @@ module myCPU (
         .ID_rD2(rD2),
         .ID_ext(sext_ext),
         .ID_pc4(ID_pc4),
+        .ID_wR(ID_inst[11:7]),
         .EX_npc_op(EX_npc_op),
         .EX_rf_wsel(EX_rf_wsel),
         .EX_rf_we(EX_rf_we),
