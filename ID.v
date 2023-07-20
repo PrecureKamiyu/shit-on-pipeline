@@ -3,20 +3,17 @@
 
 module ID(
     input wire         clk,
-
     // data part
     input wire [31:0]  din,
     input wire [31:0]  npc_pc4,
-
+    input wire [31:0]  WB_ext,
     // input
     input wire [31:0]  dram_rdo,
     input wire [31:0]  alu_c,
-
     // control part
     input wire [1:0]   rf_wsel,
     input wire         rf_we,
     input wire [2:0]   sext_op,
-
     // output part
     output wire [31:0] rD1,
     output wire [31:0] rD2,
@@ -35,7 +32,7 @@ module ID(
     );
 
     wire [31:0] sext_ext;
-    assign sext_ext = ext;
+    assign sext_ext = WB_ext;
 
     reg [31:0] wD;
     always @(*) begin
