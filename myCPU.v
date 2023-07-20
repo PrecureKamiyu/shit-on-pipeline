@@ -230,7 +230,7 @@ module myCPU (
     assign Bus_wen = MEM_dram_we;
     assign Bus_wdata = MEM_rD2;
 
-    MEM_WB (
+    MEM_WB myMEM_WB (
         .clk(cpu_clk),
         .rst(cpu_rst),
         .MEM_pc4(MEM_pc4),
