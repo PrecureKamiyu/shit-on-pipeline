@@ -290,6 +290,7 @@ module myCPU (
     MEM_WB myMEM_WB (
         .clk(cpu_clk),
         .rst(cpu_rst),
+        .MEM_ext(MEM_ext),
         .MEM_pc4(MEM_pc4),
         .MEM_alu_c(MEM_alu_c),
         .MEM_wR(MEM_wR),
@@ -297,6 +298,7 @@ module myCPU (
         .MEM_rf_wsel(MEM_rf_wsel),
         .MEM_rf_we(MEM_rf_we),
         .MEM_dram_we(MEM_dram_we),
+        .WB_ext(WB_ext),
         .WB_pc4(WB_pc4),
         .WB_alu_c(WB_alu_c),
         .WB_wR(WB_wR),

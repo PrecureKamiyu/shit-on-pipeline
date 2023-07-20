@@ -30,6 +30,7 @@ module MEM_WB (
             WB_rf_wsel<= 0;
             WB_rf_we  <= 0;
             WB_dram_we<= 0;
+            WB_ext    <= 0;
         end
         else begin
             WB_pc4    <= MEM_pc4;
@@ -39,6 +40,7 @@ module MEM_WB (
             WB_rf_wsel<= MEM_rf_wsel;
             WB_rf_we  <= MEM_rf_we;
             WB_dram_we<= MEM_dram_we;
+            WB_ext    <= MEM_ext;
         end
     end
     endmodule
