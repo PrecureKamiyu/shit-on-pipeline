@@ -78,7 +78,6 @@ module myCPU (
     wire [1:0]          WB_rf_wsel;
     wire                WB_rf_we;
     wire                WB_dram_we;
-    /
     // IROM part
     assign inst_addr = pc[15:2] ;
 
