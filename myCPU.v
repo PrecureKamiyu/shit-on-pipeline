@@ -56,7 +56,7 @@ module myCPU (
     wire [31:0]         EX_ext;
     wire [31:0]         EX_pc4;
     wire [31:0]         EX_alu_c;
-    wire [31:0]         EX_wR;
+    wire [4:0]          EX_wR;
     wire [1:0]          MEM_npc_op;
     wire [1:0]          MEM_rf_wsel;
     wire                MEM_rf_we;
@@ -70,7 +70,7 @@ module myCPU (
     wire [31:0]         MEM_ext;
     wire [31:0]         MEM_pc4;
     wire [31:0]         MEM_alu_c;
-    wire [31:0]         MEM_wR;
+    wire [4:0]          MEM_wR;
     wire [31:0]         WB_pc4;
     wire [31:0]         WB_alu_c;
     wire [4:0]          WB_wR;
