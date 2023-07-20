@@ -183,7 +183,8 @@ module myCPU (
         .EX_rD1(EX_rD1),
         .EX_rD2(EX_rD2),
         .EX_ext(EX_ext),
-        .EX_pc4(EX_pc4)
+        .EX_pc4(EX_pc4),
+        .EX_wR(EX_wR)
         );
 
     wire [31:0]         alu_c;
