@@ -13,28 +13,23 @@ module CONTROLLER
     )
 (
     input wire [31:0] inst,
-    
     // IF
     output reg [1:0] npc_op,
-    
     // ID
     output reg [1:0] rf_wsel,
     output reg rf_we,
     output reg [2:0] sext_op,
-    
     // EX ALU, branch
     output reg [3:0] alu_op,
     output reg b_sel,
     output reg [2:0] br_op,
-    
     // dram
     output reg dram_we
     );
-    
+
     wire [6:0] opcode = inst[6:0];
     wire [2:0] funct3 = inst[14:12];
     wire [6:0] funct7 = inst[31:25];
-    
     // npc_op
     always @(*) begin
       case (opcode)
