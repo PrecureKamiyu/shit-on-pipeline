@@ -133,6 +133,7 @@ module myCPU (
         .rD1(rD1),
         .rD2(rD2),
         .ext(sext_ext),
+
         .rf_wD(wD)
         );
 
@@ -174,8 +175,8 @@ module myCPU (
         .EX_npc_op(EX_npc_op),
         .EX_rf_wsel(EX_rf_wsel),
         .EX_rf_we(EX_rf_we),
-        .EX_sext_op(sext_op),
-        .EX_alu_op(alu_op),
+        .EX_sext_op(EX_sext_op),
+        .EX_alu_op(EX_alu_op),
         .EX_b_sel(EX_b_sel),
         .EX_br_op(EX_br_op),
         .EX_dram_we(EX_dram_we),
