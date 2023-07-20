@@ -40,7 +40,6 @@ module myCPU (
     // note the pipeline register is interleaved between other normal parts
     // all the register variable will be declared here
     // this time
-    //
     wire [31:0]         ID_inst;
     wire [31:0]         ID_pc4;
     wire [1:0]          EX_npc_op;
