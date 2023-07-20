@@ -25,7 +25,6 @@ module ID_EX(
     output reg        EX_b_sel,
     output reg [2:0]  EX_br_op,
     output reg        EX_dram_we,
-
     output reg [31:0] EX_rD1,
     output reg [31:0] EX_rD2,
     output reg [31:0] EX_ext,
