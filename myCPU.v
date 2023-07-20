@@ -76,6 +76,46 @@ module myCPU (
     wire [1:0]          WB_rf_wsel;
     wire                WB_rf_we;
     wire                WB_dram_we;
+    // data hazard part
+    wire [31:0]         new_rD1;
+    wire [31:0]         new_rD2;
+    wire                data_hazard;
+
+    DATA_HAZARD_DETECTION DHD (
+        .ID_rR1(ID_inst[19:15]),
+        .ID_rR2(ID_inst[24:20]),
+        .ID_rf_re(rf_re),
+        .ID_rD1(rD1),
+        .ID_rD2(rD2),
+
+        .EX_wR(EX_wR),
+        .EX_rf_we(EX_rf_we),
+        .EX_rf_wsel(EX_rf_wsel),
+        .EX_pc4(EX_pc4),
+        .EX_ext(EX_ext),
+        .EX_alu_c(alu_c),
+
+        .MEM_wR(MEM_wR),
+        .MEM_rf_we(MEM_rf_we),
+        .MEM_rf_wsel(MEM_rf_wsel),
+        .MEM_pc4(MEM_pc4),
+        .MEM_ext(MEM_ext),
+        .MEM_alu_c(MEM_alu_c),
+        .MEM_rd(rd),
+
+        .WB_wR(WB_wR),
+        .WB_rf_we(WB_rf_we),
+        .WB_rf_wsel(WB_rf_wsel),
+        .WB_pc4(WB_pc4),
+        .WB_ext(WB_ext),
+        .WB_alu_c(WB_alu_c),
+        .WB_rd(WB_rdo),
+
+        .new_rD1(new_rD1),
+        .new_rD2(new_rD2),
+        .data_hazard(data_hazard)
+        );
+
     // IROM part
     assign inst_addr = pc[15:2] ;
 
@@ -143,6 +183,7 @@ module myCPU (
     wire                b_sel;
     wire [2:0]          br_op;
     wire                dram_we;
+    wire [1:0]          rf_re;
 
     CONTROLLER myCON(
         .inst(ID_inst),
@@ -166,8 +207,8 @@ module myCPU (
         .ID_alu_op(alu_op),
         .ID_b_sel(b_sel),
         .ID_dram_we(dram_we),
-        .ID_rD1(rD1),
-        .ID_rD2(rD2),
+        .ID_rD1(new_rD1),
+        .ID_rD2(new_rD2),
         .ID_ext(sext_ext),
         .ID_pc4(ID_pc4),
         .ID_wR(ID_inst[11:7]),

@@ -14,17 +14,18 @@ module CONTROLLER
 (
     input wire [31:0] inst,
     // IF
-    output reg [1:0] npc_op,
+    output reg [1:0]  npc_op,
     // ID
-    output reg [1:0] rf_wsel,
-    output reg rf_we,
-    output reg [2:0] sext_op,
+    output reg [1:0]  rf_wsel,
+    output reg        rf_we,
+    output reg [2:0]  sext_op,
     // EX ALU, branch
-    output reg [3:0] alu_op,
-    output reg b_sel,
-    output reg [2:0] br_op,
+    output reg [3:0]  alu_op,
+    output reg        b_sel,
+    output reg [2:0]  br_op,
     // dram
-    output reg dram_we
+    output reg        dram_we,
+    output reg [1:0]  rf_re
     );
 
     wire [6:0] opcode = inst[6:0];
@@ -49,12 +50,12 @@ module CONTROLLER
             OP_LUI : rf_wsel = `RF_WSEL_EXT;
             OP_JAL : rf_wsel = `RF_WSEL_PC4;
             OP_JALR: rf_wsel = `RF_WSEL_PC4;
-            
+
             OP_R, OP_I: rf_wsel = `RF_WSEL_ALU;
             default: rf_wsel = `RF_WSEL_ALU;
         endcase
     end
-    
+
     // rf_we
     always @(*) begin
         case (opcode)
@@ -62,15 +63,15 @@ module CONTROLLER
             default:    rf_we = 1;
         endcase
     end
-    
+
     // sext_op
     always @(*) begin
         case(opcode)
             OP_I:
-              case(funct3)
-                3'b001, 3'b101: sext_op = `SEXT_MOVE;
-                default: sext_op = `SEXT_I;
-              endcase
+                case(funct3)
+                    3'b001, 3'b101: sext_op = `SEXT_MOVE;
+                    default: sext_op = `SEXT_I;
+                endcase
             OP_LOAD, OP_JALR: sext_op = `SEXT_I;
             OP_LUI: sext_op = `SEXT_U;
             OP_JAL: sext_op = `SEXT_J;
@@ -80,7 +81,7 @@ module CONTROLLER
             default:sext_op = `SEXT_R;
         endcase
     end
-    
+
     // alub_sel
     always @(*) begin
         case (opcode)
@@ -146,5 +147,16 @@ module CONTROLLER
             endcase
         end
         else br_op = `BR_NO;
+    end
+
+    always @(*) begin
+        case(opcode)
+            OP_I, OP_LOAD, OP_JALR:
+                rf_re = 2'b01;
+            OP_LUI, OP_JAL:
+                rf_re = 2'b00;
+            default:
+                rf_re = 2'b11;
+        endcase
     end
 endmodule
