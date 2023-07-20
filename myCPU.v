@@ -122,18 +122,18 @@ module myCPU (
     ID myID (
         .clk(cpu_clk),
         .din(ID_inst),
-        .npc_pc4(ID_npc_pc4),
-        .dram_rdo(rd),
-        .alu_c(alu_c),
-        .rf_wsel(rf_wsel),
-        .rf_we(rf_we),
+        .npc_pc4(WB_npc_pc4),
+        .dram_rdo(WB_rdo),
+        .alu_c(WB_alu_c),
+        .rf_wsel(WB_rf_wsel),
+        .rf_we(WB_rf_we),
         .sext_op(sext_op),
+        .wR(WB_wR),
+        // output
         .rD1(rD1),
         .rD2(rD2),
         .ext(sext_ext),
-        .rf_wD(wD),
-
-        .wR(WB_wR)
+        .rf_wD(wD)
         );
 
     wire [1:0]          npc_op;
