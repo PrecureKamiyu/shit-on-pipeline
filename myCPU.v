@@ -71,6 +71,7 @@ module myCPU (
     wire [31:0]         MEM_pc4;
     wire [31:0]         MEM_alu_c;
     wire [4:0]          MEM_wR;
+    wire [31:0]         WB_ext;
     wire [31:0]         WB_pc4;
     wire [31:0]         WB_alu_c;
     wire [4:0]          WB_wR;
@@ -89,10 +90,10 @@ module myCPU (
 
     NPC myNPC (
         .pc(pc),
-        .offset(sext_ext),
+        .offset(EX_ext),
         .imm(alu_c),
         .br(f),
-        .npc_op(npc_op),
+        .npc_op(EX_npc_op),
         .pc4(npc_pc4),
         .npc(npc)
         );
@@ -122,6 +123,7 @@ module myCPU (
     ID myID (
         .clk(cpu_clk),
         .din(ID_inst),
+        .WB_ext(WB_ext),
         .npc_pc4(WB_npc_pc4),
         .dram_rdo(WB_rdo),
         .alu_c(WB_alu_c),

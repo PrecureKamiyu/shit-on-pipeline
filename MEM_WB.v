@@ -10,6 +10,7 @@ module MEM_WB (
     input wire [1:0]  MEM_rf_wsel,
     input wire        MEM_rf_we,
     input wire        MEM_dram_we,
+    input wire [31:0] MEM_ext,
     output reg [31:0] WB_pc4,
     output reg [31:0] WB_alu_c,
     output reg [4:0]  WB_wR,
@@ -17,6 +18,7 @@ module MEM_WB (
     output reg [1:0]  WB_rf_wsel,
     output reg        WB_rf_we,
     output reg        WB_dram_we,
+    output reg [31:0] WB_ext
     );
 
     always @(posedge clk or posedge rst) begin
