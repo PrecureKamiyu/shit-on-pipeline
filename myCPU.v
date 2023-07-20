@@ -80,6 +80,7 @@ module myCPU (
     wire [31:0]         new_rD1;
     wire [31:0]         new_rD2;
     wire                data_hazard;
+    wire                control_hazard;
 
     DATA_HAZARD_DETECTION DHD (
         .ID_rR1(ID_inst[19:15]),
@@ -116,6 +117,12 @@ module myCPU (
         .data_hazard(data_hazard)
         );
 
+    CONTROL_HAZARD_DETECTION CHD(
+        .EX_npc_op(EX_npc_op),
+        .alu_f(f),
+        .control_hazard(control_hazard)
+        );
+
     // IROM part
     assign inst_addr = pc[15:2] ;
 
@@ -139,12 +146,16 @@ module myCPU (
         .npc(npc),
         .pc(pc),
         .clk(cpu_clk),
-        .rst(cpu_rst)
+        .rst(cpu_rst),
+        .data_hazard(data_hazard),
+        .control_hazard(control_hazard)
         );
 
     IF_ID myIF_ID (
         .clk(cpu_clk),
         .rst(cpu_rst),
+        .data_hazard(data_hazard),
+        .control_hazard(control_hazard),
         .IF_inst(inst),
         .IF_pc4(npc_pc4),
         .ID_inst(ID_inst),
@@ -194,12 +205,16 @@ module myCPU (
         .alu_op(alu_op),
         .b_sel(b_sel),
         .br_op(br_op),
+        .rf_re(rf_re),
         .dram_we(dram_we)
         );
 
     ID_EX myID_EX (
         .clk(cpu_clk),
         .rst(cpu_rst),
+        .data_hazard(data_hazard),
+        .control_hazard(control_hazard),
+
         .ID_npc_op(npc_op),
         .ID_rf_wsel(rf_wsel),
         .ID_rf_we(rf_we),

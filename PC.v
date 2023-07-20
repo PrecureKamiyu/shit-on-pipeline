@@ -3,7 +3,8 @@ module PC (
     input wire [31:0]  npc,
     input wire         rst,
     input wire         clk,
-    input wire data_hazard,
+    input wire         data_hazard,
+    input wire 	       control_hazard,
     output wire [31:0] pc
     );
     reg [31:0]         curr_adr;
@@ -15,10 +16,11 @@ module PC (
     `else
             curr_adr <= 0;
     `endif
-        else if (data_hazard) begin
+        else if (control_hazard)
+            pc <= npc;
+        else if (data_hazard)
             pc <= pc;
-        end
-        end else
+        else
             curr_adr <= npc;
     end
     assign pc = curr_adr;
