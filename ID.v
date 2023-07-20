@@ -20,8 +20,6 @@ module ID(
     output wire [31:0] ext,
     // rf_wD is only for debug
     output wire [31:0] rf_wD,
-    // update this is for pipeline design
-    input wire [4:0]   wD
     );
 
 
@@ -33,7 +31,6 @@ module ID(
 
     wire [31:0] sext_ext;
     assign sext_ext = WB_ext;
-
     reg [31:0] wD;
     always @(*) begin
         case (rf_wsel)
