@@ -2,27 +2,29 @@
 `include "defines.vh"
 
 module ID(
-    input wire clk,
+    input wire         clk,
 
     // data part
-    input wire [31:0] din,
-    input wire [31:0] npc_pc4,
+    input wire [31:0]  din,
+    input wire [31:0]  npc_pc4,
 
     // input
-    input wire [31:0] dram_rdo,
-    input wire [31:0] alu_c,
+    input wire [31:0]  dram_rdo,
+    input wire [31:0]  alu_c,
 
     // control part
-    input wire [1:0] rf_wsel,
-    input wire rf_we,
-    input wire [2:0] sext_op,
+    input wire [1:0]   rf_wsel,
+    input wire         rf_we,
+    input wire [2:0]   sext_op,
 
     // output part
     output wire [31:0] rD1,
     output wire [31:0] rD2,
     output wire [31:0] ext,
     // rf_wD is only for debug
-    output wire [31:0] rf_wD
+    output wire [31:0] rf_wD,
+    // update this is for pipeline design
+    input wire [4:0]   wD
     );
 
 
@@ -52,7 +54,7 @@ module ID(
         .clk(clk),
         .rR1(din[19:15]),
         .rR2(din[24:20]),
-        .wR(din[11:7]),
+        .wR(wR),
         .wD(wD),
         .we(rf_we),
 
